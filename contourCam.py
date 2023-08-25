@@ -15,7 +15,7 @@ class VideoTransformer(VideoTransformerBase):
 
 
 st.title("Contour Detection App")
-st.subheader("This app uses contour detection to highlight edges in a live video feed.")
+st.subheader("Contour detection to highlight edges in a live video feed.")
 ctx = webrtc_streamer(key="stream", video_transformer_factory=VideoTransformer)
 
 if ctx.video_transformer:
