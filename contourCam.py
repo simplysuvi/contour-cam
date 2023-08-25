@@ -16,9 +16,6 @@
 
 # ctx = webrtc_streamer(key="stream", video_transformer_factory=VideoTransformer)
 
-# if ctx.video_transformer:
-#     ctx.video_transformer.threshold1 = st.slider("Threshold 1", 0, 1000, 100)
-#     ctx.video_transformer.threshold2 = st.slider("Threshold 2", 0, 1000, 200)
 
 import cv2
 import streamlit as st
@@ -41,8 +38,6 @@ ctx = webrtc_streamer(key="stream", video_transformer_factory=VideoTransformer)
 if ctx.video_transformer:
     st.title("Contour Detection App")
     st.markdown("This app uses contour detection to highlight edges in a live video feed.")
-
-    st.slider("Threshold 1", 0, 1000, 100, label="Threshold 1")
-    st.slider("Threshold 2", 0, 1000, 200, label="Threshold 2")
-
-    st.video(ctx.video_transformer.transform, use_column_width=True)
+    if ctx.video_transformer:
+        ctx.video_transformer.threshold1 = st.slider("Threshold 1", 0, 1000, 100)
+        ctx.video_transformer.threshold2 = st.slider("Threshold 2", 0, 1000, 200)
