@@ -1,6 +1,9 @@
 import cv2
 import streamlit as st
-from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
+from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, WebRtcMode
+
+from sample_utils.download import download_file
+from sample_utils.turn import get_ice_servers
 
 
 class VideoTransformer(VideoTransformerBase):
@@ -16,14 +19,11 @@ class VideoTransformer(VideoTransformerBase):
 
 st.title("Contour Detection App")
 st.subheader("Contour detection to highlight edges in a live video feed.")
+vid = VideoTransformer()
 webrtc_ctx = webrtc_streamer(
     key="object-detection",
     mode=WebRtcMode.SENDRECV,
-    rtc_configuration={
-        "iceServers": get_ice_servers(),
-        "iceTransportPolicy": "relay",
-    },
-    video_frame_callback=video_frame_callback,
+    video_frame_callback=vid.transform(),
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
 )
