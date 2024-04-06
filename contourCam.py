@@ -19,7 +19,7 @@ st.subheader("Contour detection to highlight edges in a live video feed.")
 webrtc_ctx = webrtc_streamer(
     key="stream",
     mode=WebRtcMode.SENDRECV,
-    video_transformer_factory=VideoTransformer,
+    video_processor_factory=VideoTransformer,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
 )
