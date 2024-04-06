@@ -18,9 +18,9 @@ st.title("Contour Detection App")
 st.subheader("Contour detection to highlight edges in a live video feed.")
 vid = VideoTransformer()
 webrtc_ctx = webrtc_streamer(
-    key="object-detection",
+    key="stream",
     mode=WebRtcMode.SENDRECV,
-    video_frame_callback=vid.transform(),
+    video_transformer_factory=VideoTransformer,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
 )
