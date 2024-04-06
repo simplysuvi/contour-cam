@@ -2,9 +2,6 @@ import cv2
 import streamlit as st
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer, WebRtcMode
 
-from sample_utils.download import download_file
-from sample_utils.turn import get_ice_servers
-
 
 class VideoTransformer(VideoTransformerBase):
     def __init__(self):
