@@ -16,7 +16,6 @@ class VideoTransformer(VideoTransformerBase):
 
 st.title("Contour Detection App")
 st.subheader("Contour detection to highlight edges in a live video feed.")
-vid = VideoTransformer()
 webrtc_ctx = webrtc_streamer(
     key="stream",
     mode=WebRtcMode.SENDRECV,
@@ -24,9 +23,9 @@ webrtc_ctx = webrtc_streamer(
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
 )
-ctx = webrtc_streamer(key="stream", video_transformer_factory=VideoTransformer)
+# ctx = webrtc_streamer(key="stream", video_transformer_factory=VideoTransformer)
 
-if ctx.video_transformer:
-    if ctx.video_transformer:
-        ctx.video_transformer.threshold1 = st.slider("Threshold 1", 0, 1000, 100)
-        ctx.video_transformer.threshold2 = st.slider("Threshold 2", 0, 1000, 200)
+if webrtc_ctx.video_transformer:
+    if webrtc_ctx.video_transformer:
+        webrtc_ctx.video_transformer.threshold1 = st.slider("Threshold 1", 0, 1000, 100)
+        webrtc_ctx.video_transformer.threshold2 = st.slider("Threshold 2", 0, 1000, 200)
